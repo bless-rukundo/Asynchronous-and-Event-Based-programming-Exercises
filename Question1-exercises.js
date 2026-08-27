@@ -30,11 +30,6 @@ function getProductsByCategory(categoryId) {
   return Promise.resolve(products);
 }
 
-// getProduct(1)
-// .then((id)=>{
-//     console.log(id)
-// })
-// .then((cate));
 async function main(){
     try{
         const products = await getProduct(1);
