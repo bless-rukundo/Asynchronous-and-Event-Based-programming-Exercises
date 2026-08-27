@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myFetch(url) {
+            return new Promise((resolve, reject) => {
+                let xhl = new XMLHttpRequest();
+                xhl.open("GET", url, true);
+                xhl.responseType = "json"
+                xhl.addEventListener("load", async ()=>{
+                   if(xhl.status >= 200 && xhl.status<300){
+                       resolve(await xhl.response);
+                    } else {
+                        reject(new Error(`Request failed with status ${xhl.status}`));
+                    }
+                })
+                xhl.send(null);
+            });
+        }
+
+ myFetch('https://jsonplaceholder.typicode.com/posts/1')
+	.then(data => console.log(data))
+	.catch(error => console.log('Error:', error)); 
+    </script>
+</body>
+</html>
